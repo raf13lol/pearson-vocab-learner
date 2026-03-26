@@ -3520,21 +3520,21 @@ for (const dict of Object.values(dictionary))
     for (let i = 0; i < dict.length; i++)
     {
         const wordInfo = dict[i];
-        let englishWord = wordInfo[0];
-        // let languageWord = wordInfo[1];
+        //let englishWord = wordInfo[0];
+        let languageWord = wordInfo[1];
 
-        checkRepeat(languageRepeats, englishWord, wordInfo);
+        checkRepeat(languageRepeats, languageWord, wordInfo);
     }
 
     for (let repeat of languageRepeats.values())
     {
         if (repeat.length <= 1)
             continue;
-        console.log(repeat);
+
         for (let i = 0; i < repeat.length; i++)
         {
             const wordInfo = repeat[i];
-            // wordInfo[1] += ` (${wordInfo[2]})`;
+            wordInfo[1] += ` (${wordInfo[2]})`;
         }
     }
 }
