@@ -28,6 +28,8 @@ body
 h1
 {
     font-size: xx-large;
+    margin-bottom: 24px;
+    max-width: 50%;
 }
 
 .buttons
