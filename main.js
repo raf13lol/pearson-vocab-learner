@@ -1,48 +1,47 @@
-import dictionary, { currentDictionary, currentLanguageName, setCurrentDictionary } from "./js/dictionary.js";
-import { hideElement } from "./js/element.js";
-import { hideLanguageSelection, openLanguageSelection } from "./js/languageSelection.js";
-import { overlay } from "./js/overlay.js";
-import { initSaveData, updateStorage } from "./js/storage.js";
-import { hideWords, randomiseWord, showWords, toggleTranslation, updateEnglishToLanguage } from "./js/words.js";
+import * as dictionary from "./js/dictionary.js";
+import * as languageSelection from "./js/languageSelection.js";
+import * as overlay from "./js/overlay.js";
+import * as storage from "./js/storage.js";
+import * as visibility from "./js/visibility.js";
+import * as words from "./js/words.js";
 
-initSaveData();
-hideElement(overlay);
-hideLanguageSelection();
-toggleTranslation();
+storage.initSaveData();
+visibility.hideElement(overlay.element);
+visibility.hideElement(languageSelection.element);
+words.toggleTranslation();
 
 if (window.saveData.language == undefined)
 {
-    openLanguageSelection(false);
-    hideWords();
+    visibility.showElement(languageSelection.element);
+    visibility.hideElement(words.parentElement);
 }
 else
     selectLanguage(window.saveData.language, true);
-
 
 function selectLanguage(language, loading = false)
 {
     const newLanguageName = language[0].toUpperCase() + language.slice(1);
     if (!loading)
     {
-        hideLanguageSelection();
         window.saveData.language = language;
-        updateStorage();
-        showWords();
+        storage.writeSettings();
+
+        visibility.hideElement(languageSelection.element);
+        visibility.showElement(words.parentElement);
     }
 
     const languageNameReplacements = document.getElementsByClassName("languageNameReplace");
     for (const element of languageNameReplacements)
     {
-        let replace = currentLanguageName ?? "{LANGUAGE}";
+        let replace = dictionary.currentLanguageName ?? "{LANGUAGE}";
         element.innerHTML = element.innerHTML.replace(replace, newLanguageName);
     }
-    setCurrentDictionary(language);
+    dictionary.setCurrentDictionary(language);
 
-    randomiseWord();
-    updateEnglishToLanguage();
+    words.randomiseWord();
+    words.updateEnglishToLanguage();
 }
 
 window.selectLanguage = selectLanguage;
-window.openLanguageSelection = openLanguageSelection;
 
 document.getElementById("loading").remove();

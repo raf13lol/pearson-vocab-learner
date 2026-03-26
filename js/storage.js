@@ -1,32 +1,33 @@
 export function initSaveData()
 {
     window.saveData = {};
-    saveLoadData(false);
-    updateStorage();
-    updateSettings();
+    saveOrWriteData(false);
+    writeSettings();
+    updateSettingsDisplay();
 }
 
-export function updateSettings()
+export function updateSettingsDisplay()
 {
     document.getElementsByTagName("html")[0].dataset.lightMode = window.saveData["darkMode"] ? 0 : 1;
 }
 
-export function updateStorage()
+export function writeSettings()
 {
-    saveLoadData(true);
+    saveOrWriteData(true);
 }
 
-function saveLoadData(write)
+function saveOrWriteData(write)
 {
     if (write)
+    {
         localStorage.setItem("data", JSON.stringify(window.saveData));
-    else
-        window.saveData = JSON.parse(localStorage.getItem("data") ?? "{}");
+        return;
+    }
     
+    window.saveData = JSON.parse(localStorage.getItem("data") ?? "{}");
     loadDefaultValue("darkMode", true);
     loadDefaultValue("noDelay", false);
     loadDefaultValue("language", undefined);
-    loadDefaultValue("higherTier", true);
     loadDefaultValue("englishToLanguage", false);
 }
 

@@ -1,1 +1,1 @@
-export const overlay = document.getElementById("overlay");
+export const element = document.getElementById("overlay");
