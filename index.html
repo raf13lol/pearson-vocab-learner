@@ -4,14 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Pearson MFL vocab">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Words">
+
     <title>Pearson Vocab</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
     </style>
 </head>
 
-<body data-light-mode="0">
+<body>
+    <div id="toolbarButtons">
+        <img id="languageButton" src="./assets/lang-dark-mode.png" width="64" onclick="openLanguageSelect()">
+        <img id="lightModeButton" src="./assets/from-dark-mode.png" width="64" onclick="toggleDarkMode()">
+    </div>
     <center>
         <div id="words">
             <h2 id="currentWord">bonjour</h2>
@@ -19,17 +28,15 @@
             <div class="buttons">
                 <button onclick="randomiseWord()">Randomise word</button>
                 <button onclick="toggleTranslation()">Toggle translation</button>
-                <button id="englishToLanguage" class="languageNameReplace" onclick="toggleEnglishToLanguage()">Switch to English -> {LANGUAGE}</button>
+                <button id="englishToLanguage" class="languageNameReplace" onclick="toggleEnglishToLanguage()">Switch to
+                    English -> {LANGUAGE}</button>
             </div>
         </div>
-        <div id="overlay"></div>
-        <div class="aboveOverlay">
-            <div id="languageSelection">
-                <h1 class="aboveOverlay">Choose your language</h1>
-                <div class="aboveOverlay buttons" id="languageSelectionButtons">
-                    <button onclick="selectLanguage('french')">French</button>
-                    <button onclick="selectLanguage('spanish')">Spanish</button>
-                </div>
+        <div id="languageSelection">
+            <h1>Choose your language</h1>
+            <div class="buttons" id="languageSelectionButtons">
+                <button onclick="selectLanguage('french')">French</button>
+                <button onclick="selectLanguage('spanish')">Spanish</button>
             </div>
         </div>
     </center>

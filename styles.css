@@ -37,7 +37,7 @@ h1
     justify-content: center;
 }
 
-button 
+button
 {
     background-color: var(--button-colour);
     color: var(--text-colour);
@@ -65,5 +65,15 @@ button
 
 .aboveOverlay
 {
-    position: relative;
+    position: absolute;
+}
+
+#toolbarButtons
+{
+    position: absolute;
+}
+
+#toolbarButtons > img
+{
+    cursor: pointer;
 }

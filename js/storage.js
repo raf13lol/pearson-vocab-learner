@@ -6,9 +6,17 @@ export function initSaveData()
     updateSettingsDisplay();
 }
 
+const root = document.getElementsByTagName("html")[0];
+const lightModeButton = document.getElementById("lightModeButton");
+const languageButton = document.getElementById("languageButton");
+
 export function updateSettingsDisplay()
 {
-    document.getElementsByTagName("html")[0].dataset.lightMode = window.saveData["darkMode"] ? 0 : 1;
+   root.dataset.lightMode = window.saveData.darkMode ? 0 : 1;
+
+   const mode = window.saveData.darkMode ? "dark" : "light";
+   languageButton.src = `./assets/lang-${mode}-mode.png`;
+   lightModeButton.src = `./assets/from-${mode}-mode.png`;
 }
 
 export function writeSettings()

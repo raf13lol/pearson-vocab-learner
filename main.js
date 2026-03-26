@@ -1,20 +1,15 @@
 import * as dictionary from "./js/dictionary.js";
 import * as languageSelection from "./js/languageSelection.js";
-import * as overlay from "./js/overlay.js";
 import * as storage from "./js/storage.js";
 import * as visibility from "./js/visibility.js";
 import * as words from "./js/words.js";
 
 storage.initSaveData();
-visibility.hideElement(overlay.element);
 visibility.hideElement(languageSelection.element);
 words.toggleTranslation();
 
 if (window.saveData.language == undefined)
-{
-    visibility.showElement(languageSelection.element);
-    visibility.hideElement(words.parentElement);
-}
+    openLanguageSelect();
 else
     selectLanguage(window.saveData.language, true);
 
@@ -42,6 +37,21 @@ function selectLanguage(language, loading = false)
     words.updateEnglishToLanguage();
 }
 
+function openLanguageSelect()
+{
+    visibility.showElement(languageSelection.element);
+    visibility.hideElement(words.parentElement);
+}
+
+function toggleDarkMode()
+{
+    window.saveData.darkMode = !window.saveData.darkMode;
+    storage.updateSettingsDisplay();
+    storage.writeSettings();
+}
+
 window.selectLanguage = selectLanguage;
+window.openLanguageSelect = openLanguageSelect;
+window.toggleDarkMode = toggleDarkMode;
 
 document.getElementById("loading").remove();
