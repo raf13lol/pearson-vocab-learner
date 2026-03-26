@@ -2,6 +2,7 @@ export function initSaveData()
 {
     window.saveData = {};
     saveLoadData(false);
+    updateStorage();
     updateSettings();
 }
 
@@ -17,16 +18,19 @@ export function updateStorage()
 
 function saveLoadData(write)
 {
-    saveLoadSetting(write, "darkMode", true);
-    saveLoadSetting(write, "noDelay", false);
+    if (write)
+        localStorage.setItem("data", JSON.stringify(window.saveData));
+    else
+        window.saveData = JSON.parse(localStorage.getItem("data") ?? "{}");
+    
+    loadDefaultValue("darkMode", true);
+    loadDefaultValue("noDelay", false);
+    loadDefaultValue("language", undefined);
+    loadDefaultValue("higherTier", true);
+    loadDefaultValue("englishToLanguage", false);
 }
 
-function saveLoadSetting(write, key, defaultValue)
+function loadDefaultValue(key, defaultValue)
 {
-    if (write)
-    {
-        localStorage.setItem(key, window.saveData[key]);
-        return;
-    }
-    window.saveData[key] = localStorage.getItem(key) ?? defaultValue;
+    window.saveData[key] = window.saveData[key] ?? defaultValue;
 }

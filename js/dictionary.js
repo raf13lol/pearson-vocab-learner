@@ -1789,4 +1789,14 @@ for (const dict of Object.values(dictionary))
     }
 }
 
+export let currentDictionary = undefined;
+export let currentLanguageName = undefined;
+
+export function setCurrentDictionary(key)
+{
+    currentDictionary = dictionary[key];
+    currentLanguageName = key[0].toUpperCase() + key.slice(1);
+}
+
+
 export default dictionary;

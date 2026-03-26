@@ -1,20 +1,69 @@
 /* https://tailwindcss.com/docs/colors */
 
-:root
+:root 
 {
     --bg-colour: oklch(14.5% 0 0);
+    --button-colour: oklch(26.9% 0 0);
+    --button-border-colour: oklch(92.2% 0 0);
     --text-colour: oklch(98.5% 0 0);
 }
 
-:root[data-light-mode="1"]
+:root[data-light-mode="1"] 
 {
     --bg-colour: oklch(98.5% 0 0);
-    --text-colour: oklch(14.5% 0 0);;
+    --button-colour: oklch(92.2% 0 0);
+    --button-border-colour: oklch(26.9% 0 0);
+    --text-colour: oklch(14.5% 0 0);
 }
 
-body
+body 
 {
     background-color: var(--bg-colour);
     color: var(--text-colour);
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
+h1
+{
+    font-size: xx-large;
+}
+
+.buttons
+{   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button 
+{
+    background-color: var(--button-colour);
+    color: var(--text-colour);
+    border-color: var(--button-border-colour);
+    border-style: solid;
+    border-radius: 8px;
+    min-width: 3vw;
+    min-height: 3vh;
+    font-size: large;
+    cursor: pointer;
+    margin: 8px 8px 8px 8px;
+}
+
+#overlay
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 50%;
+    cursor: default;
+}
+
+.aboveOverlay
+{
+    position: relative;
+}
