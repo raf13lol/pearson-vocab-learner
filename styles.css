@@ -1,0 +1,20 @@
+/* https://tailwindcss.com/docs/colors */
+
+:root
+{
+    --bg-colour: oklch(14.5% 0 0);
+    --text-colour: oklch(98.5% 0 0);
+}
+
+:root[data-light-mode="1"]
+{
+    --bg-colour: oklch(98.5% 0 0);
+    --text-colour: oklch(14.5% 0 0);;
+}
+
+body
+{
+    background-color: var(--bg-colour);
+    color: var(--text-colour);
+}
+

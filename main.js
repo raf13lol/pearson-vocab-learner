@@ -1,3 +1,6 @@
 import dictionary from "./js/dictionary.js";
+import { initSaveData, updateStorage } from "./js/storage.js";
 
-document.getElementById("testDictionary").innerText = dictionary.french[Math.floor(Math.random() * dictionary.french.length)];
+initSaveData();
+
+// for (let i = 0;)
