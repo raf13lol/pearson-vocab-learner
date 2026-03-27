@@ -1,11 +1,11 @@
 import * as dictionary from "./js/dictionary.js";
-import * as languageSelection from "./js/languageSelection.js";
+import * as elements from "./js/elements.js";
 import * as storage from "./js/storage.js";
 import * as visibility from "./js/visibility.js";
 import * as words from "./js/words.js";
 
 storage.initSaveData();
-visibility.hideElement(languageSelection.element);
+visibility.hideElement(elements.languageSelection);
 words.toggleTranslation();
 
 if (window.saveData.language == undefined)
@@ -21,7 +21,7 @@ function selectLanguage(language, loading = false)
         window.saveData.language = language;
         storage.writeSettings();
 
-        visibility.hideElement(languageSelection.element);
+        visibility.hideElement(elements.languageSelection);
         visibility.showElement(words.parentElement);
     }
 
@@ -39,7 +39,7 @@ function selectLanguage(language, loading = false)
 
 function openLanguageSelect()
 {
-    visibility.showElement(languageSelection.element);
+    visibility.showElement(elements.languageSelection);
     visibility.hideElement(words.parentElement);
 }
 
