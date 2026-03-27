@@ -8,6 +8,7 @@ const currentWordTranslationElement = document.getElementById("currentWordTransl
 const englishToLanguageElement = document.getElementById("englishToLanguage");
 
 let translationHidden = false;
+let currentWordClass = undefined;
 
 export function randomiseWord()
 {
@@ -16,15 +17,24 @@ export function randomiseWord()
 
     currentWordElement.innerText = randomWord[wordIndex];
     currentWordTranslationElement.innerText = randomWord[1 - wordIndex];
+    currentWordClass = randomWord[2];
 }
 
 export function toggleTranslation()
 {
+    const wordClassReplacement = "\n" + currentWordClass;
+    const elementWithWordClass = window.saveData.englishToLanguage ? currentWordTranslationElement : currentWordElement;
+
     translationHidden = !translationHidden;
+    elementWithWordClass.innerText = elementWithWordClass.innerText.replace(wordClassReplacement, "");
+
     if (translationHidden)
         visibility.hideElement(currentWordTranslationElement);
     else
+    {
         visibility.showElement(currentWordTranslationElement)
+        elementWithWordClass.innerText += wordClassReplacement;
+    }
 }
 
 export function toggleEnglishToLanguage()

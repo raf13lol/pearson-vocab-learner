@@ -37,13 +37,7 @@ function saveOrWriteData(write)
     loadDefaultValue("noDelay", false);
     loadDefaultValue("language", undefined);
     loadDefaultValue("englishToLanguage", false);
-    loadDefaultValue("test", {
-        words: [],
-        options: [],
-        index: 0,
-        streak: 0,
-        difficulty: 0,
-    });
+    loadDefaultValue("test", {});
 }
 
 function loadDefaultValue(key, defaultValue)

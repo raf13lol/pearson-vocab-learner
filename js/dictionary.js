@@ -1656,7 +1656,7 @@ const dictionary = {
         ["documentary", "documentaire (m)", "n (m)"],
         ["on one hand", "d'un côté", "mwp"],
         ["headphones, earbuds", "écouteurs (m)", "n (m)"],
-        ["themselves (emphatic, f)", "elles-mêmes (f)", "pron"],
+        ["themselves (emph, f)", "elles-mêmes (f)", "pron"],
         ["email", "e-mail (m)", "n (m)"],
         ["timetable", "emploi du temps (m)", "n (m)"],
         ["at the moment", "en ce moment", "mwp"],
@@ -1667,7 +1667,7 @@ const dictionary = {
         ["half past", "et demie", "n (f)"],
         ["(to) be in the middle of + verb", "être en train de + infinitive", "mwp"],
         ["Europe", "Europe (f)", "n (f)"],
-        ["themselves (emphatic, m, mixed gender)", "eux-mêmes (m, mixed gender)", "pron"],
+        ["themselves (emph, m, mixed gender)", "eux-mêmes (m, mixed gender)", "pron"],
         ["to party, have fun", "faire la fête", "v"],
         ["fan, supporter", "fan (m, f)", "n (m, f)"],
         ["fast food, fast food restaurant", "fastfood (m)", "n (m)"],
@@ -5319,11 +5319,13 @@ for (const dict of Object.values(dictionary))
 
 export let currentDictionary = undefined;
 export let currentLanguageName = undefined;
+export let currentLanguage = undefined;
 
 export function setCurrentDictionary(key)
 {
     currentDictionary = dictionary[key];
     currentLanguageName = key[0].toUpperCase() + key.slice(1);
+    currentLanguage = key;
 }
 
 export default dictionary;

@@ -29,16 +29,16 @@ h1
 {
     font-size: xx-large;
     margin-bottom: 24px;
-    max-width: 72.5%;
+    max-width: 70%;
 }
 
 .buttons
 {   
     display: flex;
-    
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    max-width: 72.5%;
+    max-width: 60%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -49,8 +49,8 @@ h1
 
     .buttons
     {
-        max-width: 70%;
-        flex-direction: column;
+        max-width: 50%;
+        /* flex-direction: column; */
     }
 }
 
