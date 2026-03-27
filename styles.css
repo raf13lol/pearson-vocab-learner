@@ -32,19 +32,28 @@ h1
     max-width: 72.5%;
 }
 
+.buttons
+{   
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+    max-width: 72.5%;
+}
+
 @media only screen and (max-width: 600px) {
     h1
     {
         max-width: 45%;
     }
+
+    .buttons
+    {
+        max-width: 70%;
+        flex-direction: column;
+    }
 }
 
-.buttons
-{   
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 button
 {
@@ -53,7 +62,7 @@ button
     border-color: var(--button-border-colour);
     border-style: solid;
     border-radius: 8px;
-    min-width: 3vw;
+    min-width: 80px;
     min-height: 3vh;
     font-size: large;
     cursor: pointer;
@@ -63,9 +72,17 @@ button
 #toolbarButtons
 {
     position: absolute;
+    top: 0px;
 }
 
 #toolbarButtons > img
 {
     cursor: pointer;
+}
+
+#sidebarButtons
+{
+    position: absolute;
+    top: 0px;
+    right: 2px;
 }

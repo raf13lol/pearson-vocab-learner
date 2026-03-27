@@ -1,6 +1,6 @@
-export function showElement(element)
+export function showElement(element, displayStyle = 'block')
 {
-    element.style = "display: block";
+    element.style = `display: ${displayStyle}`;
 }
 
 export function hideElement(element)

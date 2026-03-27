@@ -18,8 +18,12 @@
 
 <body>
     <div id="toolbarButtons">
-        <img id="languageButton" src="./assets/lang-dark-mode.png" width="64" onclick="openLanguageSelect()">
         <img id="lightModeButton" src="./assets/from-dark-mode.png" width="64" onclick="toggleDarkMode()">
+        <img id="languageButton" src="./assets/lang-dark-mode.png" width="64" onclick="switchState('languageSelect')">
+    </div>
+    <div id="sidebarButtons">
+        <button id="wordsButton" onclick="switchState('words')">Words</button><br>
+        <button id="testButton" onclick="switchState('test')">Test</button><br>
     </div>
     <center>
         <div id="words">
@@ -32,9 +36,12 @@
                     English -> {LANGUAGE}</button>
             </div>
         </div>
-        <div id="languageSelection">
+        <div id="test">
+
+        </div>
+        <div id="languageSelect">
             <h1>Choose your language</h1>
-            <div class="buttons" id="languageSelectionButtons">
+            <div class="buttons">
                 <button onclick="selectLanguage('french')">French</button>
                 <button onclick="selectLanguage('spanish')">Spanish</button>
                 <button onclick="selectLanguage('german')">German</button>

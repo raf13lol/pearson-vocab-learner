@@ -1,1 +1,9 @@
-export const languageSelection = document.getElementById("languageSelection");
+export const languageSelect = document.getElementById("languageSelect");
+
+export const toolbarButtons = document.getElementById("toolbarButtons");
+export const languageButton = document.getElementById("languageButton");
+export const lightModeButton = document.getElementById("lightModeButton");
+
+export const sidebarButtons = document.getElementById("sidebarButtons");
+export const wordsButton = document.getElementById("wordsButton");
+export const testButton = document.getElementById("testButton");
