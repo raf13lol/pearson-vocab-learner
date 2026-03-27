@@ -29,7 +29,14 @@ h1
 {
     font-size: xx-large;
     margin-bottom: 24px;
-    max-width: 50%;
+    max-width: 72.5%;
+}
+
+@media only screen and (max-width: 600px) {
+    h1
+    {
+        max-width: 45%;
+    }
 }
 
 .buttons
