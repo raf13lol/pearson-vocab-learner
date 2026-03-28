@@ -102,7 +102,7 @@ function submitAnswer(answerIndex)
         return;
     }
     answerSubmitted = true;
-    
+
     // if right answer, class will get overwritten
     buttonsElement.children[answerIndex].className = "incorrect-answer";
     buttonsElement.children[correctIndex].className = "correct-answer";
@@ -115,6 +115,8 @@ function submitAnswer(answerIndex)
 function updateDisplay()
 {
     progressElement.innerText = `${testInfo.index + 1}/${dictionary.currentDictionary.length}`;
+    progressElement.innerText += `\nStreak: ${testInfo.streak}`;
+    
     questionElement.innerText = dictionary.currentDictionary[testInfo.words[testInfo.index]][1];
 
     for (let i = 0; i < testInfo.difficulty; i++)

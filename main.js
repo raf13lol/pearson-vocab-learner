@@ -80,6 +80,8 @@ function updateStateVisibility()
             test.registerKeydownEvent();
             visibility.showElement(test.parentElement);
             break;
+        case "newTest":
+            break;
         case "languageSelect":
             visibility.hideElement(elements.languageButton);
 
