@@ -1,5 +1,3 @@
-export const languageSelect = document.getElementById("languageSelect");
-
 export const toolbarButtons = document.getElementById("toolbarButtons");
 export const languageButton = document.getElementById("languageButton");
 export const lightModeButton = document.getElementById("lightModeButton");

@@ -40,6 +40,14 @@ function saveOrWriteData(write)
     loadDefaultValue("language", undefined);
     loadDefaultValue("englishToLanguage", false);
     loadDefaultValue("test", {});
+    loadDefaultValue("isWIPSaveData", true);
+
+    // TODO: uncomment when released
+    // if (window.saveData.isWIPSaveData)
+    // {
+    //     localStorage.setItem("data", "{}");
+    //     saveOrWriteData(false);
+    // }
 }
 
 function loadDefaultValue(key, defaultValue)

@@ -17,16 +17,13 @@ export function updateTestInfo()
     testInfo = window.saveData.test[dictionary.currentLanguage];
 }
 
-export function initTestForLanguage(language, difficulty)
+export function loadTestForCurrentLanguage()
 {
-    if (!window.saveData.test[language])
-        newTestForLanguage(language, difficulty, true);
-
     updateTestInfo();
-    generateButtons(window.saveData.test[language].difficulty);
+    generateButtons(testInfo.difficulty);
     updateDisplay();
 }
-export function newTestForLanguage(language, difficulty)
+export function newTestForLanguage(language, difficulty, englishToLanguage)
 {
     const languageDictionary = dictionary.default[language];
     let previousTestInfo = window.saveData.test[language] ?? {};
@@ -37,19 +34,20 @@ export function newTestForLanguage(language, difficulty)
     for (let i = 0; i < languageDictionary.length; i++)
         indices.push(i);
 
-    window.saveData.test[language] = {
+    testInfo = window.saveData.test[language] = {
         words: array.shuffle(indices),
         options: [],
         index: 0,
         correctIndex: 0,
         streak: previousTestInfo.streak ?? 0,
         difficulty: difficulty,
+        englishToLanguage: englishToLanguage
     }
     generateQuestion();
     storage.writeSettings();
 }
 
-export function generateQuestion()
+function generateQuestion()
 {
     const correctIndex = Math.floor(Math.random() * testInfo.difficulty);
     // prevent repeat correct answers via the toSpliced
@@ -59,19 +57,19 @@ export function generateQuestion()
     storage.writeSettings();
 }
 
-export function generateButtons(buttonCount)
+function generateButtons(buttonCount)
 {
-    for (let i = 0; i < Math.max(buttonCount, buttonsElement.children.length); i++)
+    for (let i = 0; i < buttonCount; i++)
     {
-        if (i >= buttonCount)
-        {
-            buttonsElement.children[i].remove();
-            continue;
-        }
         const buttonElement = document.createElement("button");
 
         buttonElement.onclick = submitAnswer.bind(undefined, i);
         buttonsElement.appendChild(buttonElement);
+    }
+
+    while (buttonsElement.children.length > buttonCount)
+    {
+        buttonsElement.children[buttonsElement.children.length - 1].remove();
     }
 }
 
@@ -106,7 +104,8 @@ function submitAnswer(answerIndex)
     // if right answer, class will get overwritten
     buttonsElement.children[answerIndex].className = "incorrect-answer";
     buttonsElement.children[correctIndex].className = "correct-answer";
-    setTimeout(() => {
+    setTimeout(() =>
+    {
         answerSubmitted = false;
         updateDisplay();
     }, 1000);
@@ -114,15 +113,17 @@ function submitAnswer(answerIndex)
 
 function updateDisplay()
 {
+    const currentWordIndex = testInfo.englishToLanguage ? 0 : 1;
+
     progressElement.innerText = `${testInfo.index + 1}/${dictionary.currentDictionary.length}`;
     progressElement.innerText += `\nStreak: ${testInfo.streak}`;
-    
-    questionElement.innerText = dictionary.currentDictionary[testInfo.words[testInfo.index]][1];
+
+    questionElement.innerText = dictionary.currentDictionary[testInfo.words[testInfo.index]][currentWordIndex];
 
     for (let i = 0; i < testInfo.difficulty; i++)
     {
-        const button = buttonsElement.children[i]; 
-        button.innerText = dictionary.currentDictionary[testInfo.options[i]][0];
+        const button = buttonsElement.children[i];
+        button.innerText = dictionary.currentDictionary[testInfo.options[i]][1 - currentWordIndex];
         button.className = "";
     }
 }
@@ -134,19 +135,19 @@ function keydownEvent(ev)
         keyCode -= 97 - 49;
 
     let answerIndex = keyCode - 49;
-    if (answerIndex < 0 || answerIndex >= testInfo.difficulty) 
+    if (answerIndex < 0 || answerIndex >= testInfo.difficulty)
         return;
     submitAnswer(answerIndex);
 }
 
 export function registerKeydownEvent()
 {
-    addEventListener("keydown", keydownEvent, {capture: true});
+    addEventListener("keydown", keydownEvent, { capture: true });
 }
 
 export function unregisterKeydownEvent()
 {
-    removeEventListener("keydown", keydownEvent, {capture: true});
+    removeEventListener("keydown", keydownEvent, { capture: true });
 }
 
 window.submitAnswer = submitAnswer;

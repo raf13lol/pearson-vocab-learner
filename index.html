@@ -24,7 +24,7 @@
     <div id="sidebarButtons">
         <button id="wordsButton" onclick="switchState('words')">Words</button><br>
 
-        <button id="testButton" onclick="switchState('test')">Test</button><br>
+        <button id="testButton" onclick="switchToTestState()">Test</button><br>
     </div>
     <center>
         <div id="words">
@@ -43,9 +43,20 @@
             <div id="testButtons" class="buttons"></div><br>
 
             <div id="testOptionButtons" class="buttons">
-                <button>New test</button>
+                <button onclick="switchState('newTest')">New test</button>
                 <button id="noDelayButton" onclick="toggleNoDelay()">Disable next-question delay</button>
             </div>
+        </div>
+        <div id="newTest">
+            <h1>Choose button count for test</h1>
+            <button onclick="createNewTest(2)">2 buttons</button><br>
+            <button onclick="createNewTest(4)">4 buttons</button><br>
+            <button onclick="createNewTest(9)">9 buttons</button><br>
+            <div class="languageNameReplace">
+                <input id="englishToLanguageCheckbox" type="checkbox"> English->{LANGUAGE}</input>
+            </div>
+            <br>
+            <button onclick="switchState('previous')">Back</button>
         </div>
         <div id="languageSelect">
             <h1>Choose your language</h1>
