@@ -6,14 +6,20 @@
     --button-colour: oklch(26.9% 0 0);
     --button-border-colour: oklch(92.2% 0 0);
     --text-colour: oklch(98.5% 0 0);
+
+    --incorrect-colour: oklch(57.7% 0.245 27.325);
+    --correct-colour: oklch(62.7% 0.194 149.214);
 }
 
 :root[data-light-mode="1"] 
 {
     --bg-colour: oklch(98.5% 0 0);
-    --button-colour: oklch(92.2% 0 0);
+    --button-colour: oklch(97% 0 0);
     --button-border-colour: oklch(26.9% 0 0);
     --text-colour: oklch(14.5% 0 0);
+
+    --incorrect-colour: oklch(70.4% 0.191 22.216);
+    --correct-colour: oklch(79.2% 0.209 151.711);
 }
 
 body 
@@ -67,6 +73,16 @@ button
     font-size: large;
     cursor: pointer;
     margin: 8px 8px 8px 8px;
+}
+
+.incorrect-answer
+{
+    background-color: var(--incorrect-colour);
+}
+
+.correct-answer
+{
+    background-color: var(--correct-colour);
 }
 
 #toolbarButtons

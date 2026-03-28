@@ -6,7 +6,7 @@ import * as test from "./js/test.js";
 import * as visibility from "./js/visibility.js";
 import * as words from "./js/words.js";
 
-let currentState = "words";
+let currentState = "test";
 let previousState = undefined;
 
 storage.initSaveData();
@@ -50,13 +50,6 @@ function selectLanguage(language, init = false)
     updateStateVisibility();
 }
 
-function toggleDarkMode()
-{
-    window.saveData.darkMode = !window.saveData.darkMode;
-    storage.updateSettingsDisplay();
-    storage.writeSettings();
-}
-
 function switchState(newState)
 {
     if (currentState == newState)
@@ -96,7 +89,6 @@ function updateStateVisibility()
 }
 
 window.selectLanguage = selectLanguage;
-window.toggleDarkMode = toggleDarkMode;
 window.switchState = switchState;
 
 document.getElementById("loading").remove();

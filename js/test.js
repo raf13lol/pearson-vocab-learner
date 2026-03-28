@@ -3,8 +3,6 @@ import * as dictionary from "./dictionary.js";
 import * as storage from "./storage.js";
 import * as visibility from "./visibility.js";
 
-const getTestInfo = () => window.saveData.test[dictionary.currentLanguage];
-
 export const parentElement = document.getElementById("test");
 const progressElement = document.getElementById("testProgress");
 const questionElement = document.getElementById("testQuestion");
@@ -12,6 +10,7 @@ const buttonsElement = document.getElementById("testButtons");
 
 let onInputHandler = undefined;
 let testInfo = undefined;
+let answerSubmitted = false;
 
 export function updateTestInfo()
 {
@@ -25,7 +24,6 @@ export function initTestForLanguage(language, difficulty)
 
     updateTestInfo();
     generateButtons(window.saveData.test[language].difficulty);
-    generateQuestion();
     updateDisplay();
 }
 export function newTestForLanguage(language, difficulty)
@@ -47,14 +45,15 @@ export function newTestForLanguage(language, difficulty)
         streak: previousTestInfo.streak ?? 0,
         difficulty: difficulty,
     }
+    generateQuestion();
     storage.writeSettings();
 }
 
 export function generateQuestion()
 {
     const correctIndex = Math.floor(Math.random() * testInfo.difficulty);
-
-    testInfo.options = array.shuffle(testInfo.words, testInfo.difficulty);
+    // prevent repeat correct answers via the toSpliced
+    testInfo.options = array.shuffle(testInfo.words.toSpliced(testInfo.index, 1), testInfo.difficulty);
     testInfo.options[correctIndex] = testInfo.words[testInfo.index];
     testInfo.correctIndex = correctIndex;
     storage.writeSettings();
@@ -78,7 +77,11 @@ export function generateButtons(buttonCount)
 
 function submitAnswer(answerIndex)
 {
-    const isCorrect = answerIndex == testInfo.correctIndex;
+    if (answerSubmitted)
+        return;
+    // needed for if delay is enabled
+    const correctIndex = testInfo.correctIndex;
+    const isCorrect = answerIndex == correctIndex;
     if (isCorrect)
     {
         testInfo.streak++;
@@ -90,8 +93,23 @@ function submitAnswer(answerIndex)
         testInfo.words.push(removedIndex);
         testInfo.streak = 0;
     }
+
     generateQuestion();
-    updateDisplay();
+
+    if (window.saveData.noDelay)
+    {
+        updateDisplay();
+        return;
+    }
+    answerSubmitted = true;
+    
+    // if right answer, class will get overwritten
+    buttonsElement.children[answerIndex].className = "incorrect-answer";
+    buttonsElement.children[correctIndex].className = "correct-answer";
+    setTimeout(() => {
+        answerSubmitted = false;
+        updateDisplay();
+    }, 1000);
 }
 
 function updateDisplay()
@@ -101,19 +119,22 @@ function updateDisplay()
 
     for (let i = 0; i < testInfo.difficulty; i++)
     {
-        buttonsElement.children[i].innerText = dictionary.currentDictionary[testInfo.options[i]][0];
+        const button = buttonsElement.children[i]; 
+        button.innerText = dictionary.currentDictionary[testInfo.options[i]][0];
+        button.className = "";
     }
 }
 
 function keydownEvent(ev)
 {
     let keyCode = ev.keyCode;
-    if (keyCode >= 97 && keyCode <= 105)
+    if (keyCode >= 97)
         keyCode -= 97 - 49;
 
-    if (keyCode < 49 || keyCode > 57)
+    let answerIndex = keyCode - 49;
+    if (answerIndex < 0 || answerIndex >= testInfo.difficulty) 
         return;
-    submitAnswer(keyCode - 49);
+    submitAnswer(answerIndex);
 }
 
 export function registerKeydownEvent()

@@ -9,14 +9,16 @@ export function initSaveData()
 const root = document.getElementsByTagName("html")[0];
 const lightModeButton = document.getElementById("lightModeButton");
 const languageButton = document.getElementById("languageButton");
+const noDelayButton = document.getElementById("noDelayButton");
 
 export function updateSettingsDisplay()
 {
    root.dataset.lightMode = window.saveData.darkMode ? 0 : 1;
 
    const mode = window.saveData.darkMode ? "dark" : "light";
-   languageButton.src = `./assets/lang-${mode}-mode.png`;
    lightModeButton.src = `./assets/from-${mode}-mode.png`;
+   languageButton.src = `./assets/lang-${mode}-mode.png`;
+   noDelayButton.innerText = (window.saveData.noDelay ? "Enable" : "Disable") + " next-question delay"; 
 }
 
 export function writeSettings()
@@ -44,3 +46,20 @@ function loadDefaultValue(key, defaultValue)
 {
     window.saveData[key] = window.saveData[key] ?? defaultValue;
 }
+
+function toggleDarkMode()
+{
+    window.saveData.darkMode = !window.saveData.darkMode;
+    updateSettingsDisplay();
+    writeSettings();
+}
+
+function toggleNoDelay()
+{
+    window.saveData.noDelay = !window.saveData.noDelay;
+    updateSettingsDisplay();
+    writeSettings();
+}
+
+window.toggleDarkMode = toggleDarkMode;
+window.toggleNoDelay = toggleNoDelay;

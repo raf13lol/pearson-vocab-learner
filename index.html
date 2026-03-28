@@ -23,6 +23,7 @@
     </div>
     <div id="sidebarButtons">
         <button id="wordsButton" onclick="switchState('words')">Words</button><br>
+
         <button id="testButton" onclick="switchState('test')">Test</button><br>
     </div>
     <center>
@@ -39,7 +40,12 @@
         <div id="test">
             <h1 id="testProgress"></h1>
             <h1 id="testQuestion"></h1>
-            <div id="testButtons" class="buttons"></div>
+            <div id="testButtons" class="buttons"></div><br>
+
+            <div id="testOptionButtons" class="buttons">
+                <button>New test</button>
+                <button id="noDelayButton" onclick="toggleNoDelay()">Disable next-question delay</button>
+            </div>
         </div>
         <div id="languageSelect">
             <h1>Choose your language</h1>
