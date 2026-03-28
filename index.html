@@ -18,8 +18,8 @@
 
 <body>
     <div id="toolbarButtons">
-        <img id="lightModeButton" src="./assets/from-dark-mode.png" width="64" onclick="toggleDarkMode()">
-        <img id="languageButton" src="./assets/lang-dark-mode.png" width="64" onclick="switchState('languageSelect')">
+        <img id="lightModeButton" src="./assets/sun-regular-full.svg" width="50" onclick="toggleDarkMode()">
+        <img id="languageButton" src="./assets/language-dark-full.svg" width="50" onclick="switchState('languageSelect')">
     </div>
     <div id="sidebarButtons">
         <button id="wordsButton" onclick="switchState('words')">Words</button><br>
@@ -28,7 +28,7 @@
     </div>
     <center>
         <div id="words">
-            <h1 id="currentWord">bonjour</h1>
+            <h1 id="currentWord" class="title">bonjour</h1>
             <h1 id="currentWordTranslation">hello</h1>
             <div class="buttons">
                 <button onclick="randomiseWord()">Randomise word</button>
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div id="test">
-            <h1 id="testProgress"></h1>
+            <h1 id="testProgress" class="title"></h1>
             <h1 id="testQuestion"></h1>
             <div id="testButtons" class="buttons"></div><br>
 
@@ -48,26 +48,24 @@
             </div>
         </div>
         <div id="newTest">
-            <h1>Choose button count for test</h1>
+            <h1 class="title">Choose button count for test</h1>
             <button onclick="createNewTest(2)">2 buttons</button><br>
             <button onclick="createNewTest(4)">4 buttons</button><br>
             <button onclick="createNewTest(9)">9 buttons</button><br>
             <div class="languageNameReplace">
                 <input id="englishToLanguageCheckbox" type="checkbox"> English->{LANGUAGE}</input>
             </div>
-            <br>
-            <button onclick="switchState('previous')">Back</button>
         </div>
         <div id="languageSelect">
-            <h1>Choose your language</h1>
+            <h1 class="title">Choose your language</h1>
             <div class="buttons">
                 <button onclick="selectLanguage('french')">French</button>
                 <button onclick="selectLanguage('spanish')">Spanish</button>
                 <button onclick="selectLanguage('german')">German</button>
             </div>
         </div>
-
-        <footer>WORK-IN-PROGRESS; FEATURES MAY BE INCOMPLETE OR NON-FUNCTIONAL.</footer>
+        <br>
+        <button id="backButton" onclick="switchState('previous')">Back</button>
     </center>
     <div id="loading"
         style="left: 0px; top: 0px; position: absolute; width: 100%; height: 100%; background-color: oklch(14.5% 0 0); color: oklch(98.5% 0 0);">

@@ -7,6 +7,8 @@ import * as test from "./js/test.js";
 import * as visibility from "./js/visibility.js";
 import * as words from "./js/words.js";
 
+console.log("icons from fontawesome btw");
+
 let currentState = "words";
 let previousState = undefined;
 
@@ -71,8 +73,10 @@ function updateStateVisibility()
     visibility.hideElement(test.parentElement);
     visibility.hideElement(newTest.parentElement);
     visibility.hideElement(languageSelect.parentElement);
-
+    
+    visibility.hideElement(elements.backButton);
     visibility.showElement(elements.languageButton, "inline");
+
     visibility.setElementVisibility(elements.sidebarButtons, window.saveData.language != undefined, "inline");
 
     switch (currentState)
@@ -88,11 +92,14 @@ function updateStateVisibility()
         case "newTest":
             englishToLanguageCheckbox.checked = window.saveData.englishToLanguage;
             visibility.showElement(newTest.parentElement);
+            visibility.showElement(elements.backButton);
             break;
         case "languageSelect":
             visibility.hideElement(elements.languageButton);
 
             visibility.showElement(languageSelect.parentElement);
+            if (window.saveData.language != undefined)
+                visibility.showElement(elements.backButton)
             break;
     }
 }

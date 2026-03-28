@@ -15,9 +15,9 @@ export function updateSettingsDisplay()
 {
    root.dataset.lightMode = window.saveData.darkMode ? 0 : 1;
 
-   const mode = window.saveData.darkMode ? "dark" : "light";
-   lightModeButton.src = `./assets/from-${mode}-mode.png`;
-   languageButton.src = `./assets/lang-${mode}-mode.png`;
+   lightModeButton.src = `./assets/${window.saveData.darkMode ? "sun" : "moon"}-regular-full.svg`;
+   languageButton.src = `./assets/language-${window.saveData.darkMode ? "dark" : "light"}-full.svg`;
+
    noDelayButton.innerText = (window.saveData.noDelay ? "Enable" : "Disable") + " next-question delay"; 
 }
 
@@ -40,14 +40,6 @@ function saveOrWriteData(write)
     loadDefaultValue("language", undefined);
     loadDefaultValue("englishToLanguage", false);
     loadDefaultValue("test", {});
-    loadDefaultValue("isWIPSaveData", true);
-
-    // TODO: uncomment when released
-    // if (window.saveData.isWIPSaveData)
-    // {
-    //     localStorage.setItem("data", "{}");
-    //     saveOrWriteData(false);
-    // }
 }
 
 function loadDefaultValue(key, defaultValue)

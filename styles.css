@@ -35,7 +35,12 @@ h1
 {
     font-size: xx-large;
     margin-bottom: 24px;
-    max-width: 70%;
+    max-width: max(calc(100vw - 10px), 0px);
+}
+
+.title
+{
+    max-width: max(calc(100vw - 240px), 0px);
 }
 
 .buttons
@@ -44,22 +49,8 @@ h1
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    max-width: 60%;
+    max-width: max(calc(100vw - 10px), 0px);
 }
-
-@media only screen and (max-width: 600px) {
-    h1
-    {
-        max-width: 45%;
-    }
-
-    .buttons
-    {
-        max-width: 50%;
-        /* flex-direction: column; */
-    }
-}
-
 
 button
 {
@@ -69,7 +60,6 @@ button
     border-style: solid;
     border-radius: 8px;
     min-width: 80px;
-    min-height: 3vh;
     font-size: large;
     cursor: pointer;
     margin: 8px 8px 8px 8px;
@@ -101,4 +91,14 @@ button
     position: absolute;
     top: 0px;
     right: 2px;
+}
+
+.darkMode
+{
+    color: white;
+}
+
+.lightMode
+{
+    color: black;
 }

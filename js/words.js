@@ -18,6 +18,9 @@ export function randomiseWord()
     currentWordElement.innerText = randomWord[wordIndex];
     currentWordTranslationElement.innerText = randomWord[1 - wordIndex];
     currentWordClass = randomWord[2];
+     // refresh text properly
+    toggleTranslation();
+    toggleTranslation();
 }
 
 export function toggleTranslation()
@@ -44,6 +47,7 @@ export function toggleEnglishToLanguage()
     updateEnglishToLanguage();
 
     randomiseWord();
+   
 }
 
 export function updateEnglishToLanguage()

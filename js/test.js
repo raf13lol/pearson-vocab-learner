@@ -44,7 +44,6 @@ export function newTestForLanguage(language, difficulty, englishToLanguage)
         englishToLanguage: englishToLanguage
     }
     generateQuestion();
-    storage.writeSettings();
 }
 
 function generateQuestion()
@@ -91,8 +90,10 @@ function submitAnswer(answerIndex)
         testInfo.words.push(removedIndex);
         testInfo.streak = 0;
     }
-
-    generateQuestion();
+    if (testInfo.index >= testInfo.words.length)
+        newTestForLanguage(dictionary.currentLanguage, testInfo.difficulty, testInfo.englishToLanguage);    
+    else
+        generateQuestion();
 
     if (window.saveData.noDelay)
     {
