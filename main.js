@@ -10,7 +10,7 @@ import * as words from "./js/words.js";
 
 console.log("icons from fontawesome btw");
 
-let currentState = "search";
+let currentState = "words";
 let previousState = undefined;
 
 storage.initSaveData();
