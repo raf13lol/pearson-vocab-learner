@@ -44,6 +44,8 @@ function reloadFilter()
         currentFilter = "word";
     else if (!!document.querySelector("#searchWordClass:checked"))
         currentFilter = "wordClass";
+    else
+        searchMeaningElement.click();
     reloadSearch();
 }
 
@@ -162,6 +164,8 @@ function reloadElements()
     for (; i < largestDictionaryLength; i++)
         visibility.hideElement(loadedElements[i]);
 }
+
+reloadFilter();
 
 searchBarElement.oninput = reloadSearchBarInput;
 searchMeaningElement.oninput = reloadFilter;
