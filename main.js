@@ -2,6 +2,7 @@ import * as dictionary from "./js/dictionary.js";
 import * as elements from "./js/elements.js";
 import * as languageSelect from "./js/languageSelect.js";
 import * as newTest from "./js/newTest.js";
+import * as search from "./js/search.js";
 import * as storage from "./js/storage.js";
 import * as test from "./js/test.js";
 import * as visibility from "./js/visibility.js";
@@ -9,17 +10,17 @@ import * as words from "./js/words.js";
 
 console.log("icons from fontawesome btw");
 
-let currentState = "words";
+let currentState = "search";
 let previousState = undefined;
 
 storage.initSaveData();
-updateStateVisibility();
-words.toggleTranslation();
 
 if (window.saveData.language == undefined)
     switchState("languageSelect")
 else
     updateLanguage(window.saveData.language, true);
+
+updateStateVisibility();
 
 function updateLanguage(language)
 {
@@ -72,6 +73,7 @@ function updateStateVisibility()
     visibility.hideElement(words.parentElement);
     visibility.hideElement(test.parentElement);
     visibility.hideElement(newTest.parentElement);
+    visibility.hideElement(search.parentElement);
     visibility.hideElement(languageSelect.parentElement);
     
     visibility.hideElement(elements.backButton);
@@ -93,6 +95,11 @@ function updateStateVisibility()
             englishToLanguageCheckbox.checked = window.saveData.englishToLanguage;
             visibility.showElement(newTest.parentElement);
             visibility.showElement(elements.backButton);
+            break;
+        case "search":
+            visibility.showElement(search.parentElement);
+            if (search.currentLanguageLoaded != dictionary.currentLanguage)
+                requestAnimationFrame(search.changeElementsLanguage);
             break;
         case "languageSelect":
             visibility.hideElement(elements.languageButton);

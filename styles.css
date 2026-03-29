@@ -4,6 +4,7 @@
 {
     --bg-colour: oklch(14.5% 0 0);
     --button-colour: oklch(26.9% 0 0);
+    --odd-row-colour: oklch(26.9% 0 0);
     --button-border-colour: oklch(92.2% 0 0);
     --text-colour: oklch(98.5% 0 0);
 
@@ -15,6 +16,7 @@
 {
     --bg-colour: oklch(98.5% 0 0);
     --button-colour: oklch(97% 0 0);
+    --odd-row-colour: oklch(92.2% 0 0);
     --button-border-colour: oklch(26.9% 0 0);
     --text-colour: oklch(14.5% 0 0);
 
@@ -26,6 +28,10 @@ body
 {
     background-color: var(--bg-colour);
     color: var(--text-colour);
+}
+
+body, button, input
+{
     font-family: "Roboto Mono", monospace;
     font-optical-sizing: auto;
     font-style: normal;
@@ -60,7 +66,20 @@ h1
     max-width: max(calc(100vw - 10px), 0px);
 }
 
-button
+.buttons, table
+{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: max(calc(100vw - 10px), 0px);
+}
+
+.odd-row
+{
+    background-color: var(--odd-row-colour);
+}
+
+#searchBar, button
 {
     background-color: var(--button-colour);
     color: var(--text-colour);
@@ -69,8 +88,17 @@ button
     border-radius: 8px;
     min-width: 80px;
     font-size: large;
-    cursor: pointer;
     margin: 8px 8px 8px 8px;
+}
+
+#searchBar
+{
+    max-width: max(calc(100vw - 200px), 0px);
+}
+
+button
+{
+    cursor: pointer;
 }
 
 .incorrect-answer
@@ -98,7 +126,7 @@ button
 {
     position: absolute;
     top: 0px;
-    right: 2px;
+    right: 4px;
 }
 
 .darkMode

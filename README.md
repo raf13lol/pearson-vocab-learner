@@ -1,6 +1,6 @@
 # pearson vocab learner
 
-Basically it's like you can see all the vocab and whatnot for french, spanish and german atm
+Basically it's like you can see all the vocab and whatnot for french, spanish and german pearson gcse (2024 spec)
 
 Also this code sucks btw just to lowkey let you know
 

@@ -17,15 +17,19 @@
 </head>
 
 <body>
-    <div id="toolbarButtons">
-        <img id="lightModeButton" src="./assets/sun-regular-full.svg" width="50" onclick="toggleDarkMode()">
-        <img id="languageButton" src="./assets/language-dark-full.svg" width="50" onclick="switchState('languageSelect')">
-    </div>
-    <div id="sidebarButtons">
+    <aside id="toolbarButtons">
+        <img id="lightModeButton" src="./assets/sun-regular-full.svg" width="50" onclick="toggleDarkMode()"
+            alt="Dark mode toggle" role="button">
+        <img id="languageButton" src="./assets/language-dark-full.svg" width="50"
+            onclick="switchState('languageSelect')" alt="Open language select" role="button">
+    </aside>
+    <nav id="sidebarButtons">
         <button id="wordsButton" onclick="switchState('words')">Words</button><br>
 
         <button id="testButton" onclick="switchToTestState()">Test</button><br>
-    </div>
+
+        <button id="searchButton" onclick="switchState('search')">Search</button><br>
+    </nav>
     <center>
         <div id="words">
             <h1 id="currentWord" class="title">bonjour</h1>
@@ -53,7 +57,42 @@
             <button onclick="createNewTest(4)">4 buttons</button><br>
             <button onclick="createNewTest(9)">9 buttons</button><br>
             <div class="languageNameReplace">
-                <input id="englishToLanguageCheckbox" type="checkbox"> English->{LANGUAGE}</input>
+                <input id="englishToLanguageCheckbox" type="checkbox">
+                <label for="englishToLanguageCheckbox">English->{LANGUAGE}</label>
+            </div>
+        </div>
+        <div id="search">
+            <h1 class="title">Search</h1>
+            <div id="searchInput">
+                <input id="searchBar" type="search" placeholder="Enter term to search for"
+                    aria-label="Enter term to search for"><br>
+
+                <input id="searchMeaning" type="radio" name="searchFilter">
+                <label for="searchMeaning">Search by meaning</label>
+
+                <input id="searchWord" type="radio" name="searchFilter">
+                <label for="searchWord">Search by word</label>
+
+                <input id="searchWordClass" type="radio" name="searchFilter">
+                <label for="searchWordClass">Search by word class</label>
+            </div>
+            <p id="searchLoading">Loading...</p>
+            <p id="searchNoQuery">No search query (search * to see all vocab)</p>
+            <p id="searchNoResults">No results found</p>
+            <div id="searchResults">
+                <table>
+                    <thead>
+                        <tr></tr>
+                        <tr>
+                            <td>Meaning</td>
+                            <td>Word</td>
+                            <td>Word class</td>
+                        </tr>
+                    </thead>
+                    <tbody id="searchResultTable">
+                        
+                    </tbody>
+                </table>
             </div>
         </div>
         <div id="languageSelect">

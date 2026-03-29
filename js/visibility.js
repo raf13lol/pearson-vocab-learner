@@ -1,11 +1,11 @@
 export function showElement(element, displayStyle = 'block')
 {
-    element.style = `display: ${displayStyle}`;
+    element.style = `display: ${displayStyle};`;
 }
 
 export function hideElement(element)
 {
-    element.style = "display: none";
+    element.style = "display: none;";
 }
 
 export function setElementVisibility(element, visible, displayStyle = 'block')
