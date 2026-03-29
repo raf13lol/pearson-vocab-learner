@@ -163,8 +163,10 @@ function reloadElements()
         visibility.hideElement(loadedElements[i]);
 }
 
+loading = true;
 searchMeaningElement.click();
 searchBarElement.value = "";
+loading = false;
 
 searchBarElement.oninput = reloadSearchBarInput;
 searchMeaningElement.oninput = reloadFilter;
