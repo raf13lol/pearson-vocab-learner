@@ -40,7 +40,7 @@ body, button, input
 h1
 {
     font-size: xx-large;
-    margin-bottom: 24px;
+    margin-bottom: 48+px;
     max-width: max(calc(100vw - 10px), 0px);
 }
 

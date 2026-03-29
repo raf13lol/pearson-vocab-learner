@@ -21,6 +21,7 @@ else
     updateLanguage(window.saveData.language, true);
 
 updateStateVisibility();
+words.toggleTranslation();
 
 function updateLanguage(language)
 {
