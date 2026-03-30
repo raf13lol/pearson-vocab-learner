@@ -71,7 +71,11 @@ h1
     align-items: center;
     justify-content: center;
     text-align: center;
-    max-width: max(calc(100vw - 10px), 0px);
+}
+
+table
+{
+    max-width: max(calc(100vw - 20px), 0px);
 }
 
 .odd-row
