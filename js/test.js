@@ -58,18 +58,18 @@ function generateQuestion()
 
 function generateButtons(buttonCount)
 {
-    for (let i = 0; i < buttonCount; i++)
+    const children = buttonsElement.children;
+    while (children.length > buttonCount)
+        children[children.length - 1].remove();
+
+    while (children.length < buttonCount)
     {
         const buttonElement = document.createElement("button");
-
-        buttonElement.onclick = submitAnswer.bind(undefined, i);
         buttonsElement.appendChild(buttonElement);
     }
 
-    while (buttonsElement.children.length > buttonCount)
-    {
-        buttonsElement.children[buttonsElement.children.length - 1].remove();
-    }
+    for (let i = 0; i < buttonCount; i++)
+        children[i].onclick = submitAnswer.bind(null, i);
 }
 
 function submitAnswer(answerIndex)
