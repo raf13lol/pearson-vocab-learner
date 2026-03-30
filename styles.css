@@ -40,7 +40,7 @@ body, button, input
 h1
 {
     font-size: xx-large;
-    margin-bottom: 48+px;
+    margin-bottom: 48px;
     max-width: max(calc(100vw - 10px), 0px);
 }
 
@@ -66,15 +66,9 @@ h1
     max-width: max(calc(100vw - 10px), 0px);
 }
 
-.buttons, table
-{
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
 table
 {
+    text-align: center;
     max-width: max(calc(100vw - 20px), 0px);
 }
 
@@ -131,14 +125,4 @@ button
     position: absolute;
     top: 0px;
     right: 4px;
-}
-
-.darkMode
-{
-    color: white;
-}
-
-.lightMode
-{
-    color: black;
 }
