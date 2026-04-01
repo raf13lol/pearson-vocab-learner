@@ -60,15 +60,20 @@ function reloadSearch()
     }
     visibility.hideElement(searchNoQueryElement);
 
+    currentSearch = currentSearch.toLowerCase();
+
     const words = dictionary.currentDictionary;
     let index = 0;
+    let backupIndex = undefined;
     switch (currentFilter)
     {
         case "meaning":
             index = 0;
+            backupIndex = 3;
             break;
         case "word":
             index = 1;
+            backupIndex = 4;
             break;
         case "wordClass":
             index = 2;
@@ -76,13 +81,13 @@ function reloadSearch()
     }
 
     toBeShown = [];
-    
+
     const allResults = currentSearch == "*";
     let anyResults = allResults;
     let isOdd = true;
     for (let i = 0; i < words.length; i++)
     {
-        let show = allResults || words[i][index].includes(currentSearch);
+        let show = allResults || words[i][index].includes(currentSearch) || (backupIndex != undefined && words[i][backupIndex].includes(currentSearch));
         if (show)
         {
             show += !(isOdd = !isOdd);
@@ -115,7 +120,8 @@ export function changeElementsLanguage()
 
     loadedElements = [];
 
-    requestAnimationFrame(() => {
+    requestAnimationFrame(() =>
+    {
         let html = "";
         for (let i = 0; i < words.length; i++)
         {
@@ -125,10 +131,12 @@ export function changeElementsLanguage()
 
         loading = false;
         searchResultTableElement.innerHTML = html;
-        currentLanguageLoaded = dictionary.currentLanguage; 
+        currentLanguageLoaded = dictionary.currentLanguage;
 
-        requestAnimationFrame(() => {
+        requestAnimationFrame(() =>
+        {
             visibility.hideElement(searchLoadingElement);
+            shownElements = [];
             reloadSearch();
         });
     });
@@ -152,7 +160,7 @@ function reloadElements()
             loadedElements[i] = children[i];
 
         visibility.setElementVisibility(loadedElements[i], show, 'table-row');
-        
+
         if (show)
             loadedElements[i].className = (show == 2) ? "odd-row" : "";
     }
